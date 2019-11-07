@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source ~/bash-scripts/posh-git.sh
 
 function my-prompt {
