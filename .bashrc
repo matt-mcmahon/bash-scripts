@@ -116,6 +116,10 @@ if ! shopt -oq posix; then
 	fi
 fi
 
+# Default Editors
+export EDITOR="vim"
+export VISUAL="vim"
+
 # Required for keybase GPG implementation
 export GPG_TTY=$(tty)
 
