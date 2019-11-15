@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo This will delete all of the node_module folders in $1.
+echo Are you sure? yes/NO
+
+read YES
+
+case "${YES,,}"
+	in
+	y)
+		doit=Y;;
+	ye)  
+		doit=Y;;
+	yes)
+		doit=Y;;
+	*)
+		doit=N;;
+esac
+
+if [ "${doit}" == "Y" ]; then
+	find $1 -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+else
+	echo Cancelled
+fi
