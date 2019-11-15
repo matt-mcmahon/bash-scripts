@@ -116,6 +116,9 @@ if ! shopt -oq posix; then
 	fi
 fi
 
+export EDITOR="vim"
+export VISUAL="vim"
+
 export NVS_HOME="$HOME/.nvs"
 [ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
 
