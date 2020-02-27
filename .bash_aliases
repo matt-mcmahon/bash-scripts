@@ -2,5 +2,5 @@ alias rm="rm -i"
 alias dc="docker-compose"
 alias pm="pnpm"
 alias px="pnpx"
-alias lk="ls -Al --group-directories-first"
-
+alias lk="ls -l --group-directories-first"
+alias ii="explorer.exe"
