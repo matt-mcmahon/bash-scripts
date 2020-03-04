@@ -125,10 +125,6 @@ export NVS_HOME="$HOME/.nvs"
 # Required for keybase GPG implementation
 export GPG_TTY=$(tty)
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 PATH="$HOME/bash-scripts/bin/:${PATH}"
 
 PATH="/home/matt/perl5/bin${PATH:+:${PATH}}"; export PATH;
