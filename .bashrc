@@ -123,7 +123,6 @@ export VISUAL="vim"
 # Required for keybase GPG implementation
 export GPG_TTY=$(tty)
 
-
 # Using Node Version Switcher
 NVS_DIR="$HOME/.nvs"
 if [ -d "$NVS_DIR" ]; then
@@ -137,4 +136,10 @@ if [ -d "$NVM_DIR" ]; then
 	export NVM_DIR
 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                    # This loads nvm
 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+# Using bash-scripts/bin
+BASH_SCRIPTS_BIN="$HOME/bash-scripts/bin/"
+if [ -d "BASH_SCRIPTS_BIN" ]; then
+	PATH="$HOME/bash-scripts/bin/:${PATH}"; export PATH
 fi

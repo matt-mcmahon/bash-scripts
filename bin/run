@@ -1,0 +1,7 @@
+#!/bin/bash
+
+path=$(pwd)
+while [[ "$path" != "/" && ! -e "$path/run" ]]; do
+    path=${path%/*}
+done
+(cd $path; ./run "$@")
