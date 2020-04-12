@@ -86,12 +86,6 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -AlF --group-directories-first --classify'
-alias la='ls -A'
-alias l='ls -CF'
-alias lk='ls -l --group-directories-first --classify'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -132,3 +126,18 @@ PERL5LIB="/home/matt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/matt/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/matt/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/matt/perl5"; export PERL_MM_OPT;
+
+export DENO_INSTALL="/home/matt/.local"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+npm_execpath="$(which pnpm)"
+if [[ $npm_execpath ]]; then
+  alias pm="pnpm"
+  alias px="pnpx"
+else 
+  npm_execpath=$(which npm)
+	alias pm="npm"
+	alias px="npx"
+fi
+
+export npm_execpath

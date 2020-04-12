@@ -1,6 +1,7 @@
-alias rm="rm -i"
 alias dc="docker-compose"
-alias pm="pnpm"
-alias px="pnpx"
-alias lk="ls -l --group-directories-first"
 alias ii="explorer.exe"
+alias l='ls -CF'
+alias la='ls -A'
+alias lk="ls -l --group-directories-first"
+alias ll='ls -AlF --group-directories-first --classify'
+alias rm="rm -i"
