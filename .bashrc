@@ -119,14 +119,6 @@ export NVS_HOME="$HOME/.nvs"
 # Required for keybase GPG implementation
 export GPG_TTY=$(tty)
 
-PATH="$HOME/bash-scripts/bin/:${PATH}"
-
-PATH="/home/matt/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/matt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/matt/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/matt/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/matt/perl5"; export PERL_MM_OPT;
-
 export DENO_INSTALL="/home/matt/.local"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
@@ -139,5 +131,25 @@ else
 	alias pm="npm"
 	alias px="npx"
 fi
-
 export npm_execpath
+
+# Using Node Version Switcher
+NVS_DIR="$HOME/.nvs"
+if [ -d "$NVS_DIR" ]; then
+	export NVS_DIR
+	[ -s "$NVS_DIR/nvs.sh" ] && . "$NVS_DIR/nvs.sh"
+fi
+
+# Using Node Version Manager
+NVM_DIR="$HOME/.nvm"
+if [ -d "$NVM_DIR" ]; then
+	export NVM_DIR
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                    # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+# Using bash-scripts/bin
+BASH_SCRIPTS_BIN="$HOME/bash-scripts/bin/"
+if [ -d "BASH_SCRIPTS_BIN" ]; then
+	PATH="$HOME/bash-scripts/bin/:${PATH}"; export PATH
+fi
