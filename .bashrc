@@ -122,8 +122,11 @@ export NVS_HOME="$HOME/.nvs"
 # Required for keybase GPG implementation
 export GPG_TTY=$(tty)
 
-export DENO_INSTALL="/home/matt/.local"
-export PATH="$DENO_INSTALL/bin:$PATH"
+DENO_INSTALL="$HOME/.local"
+if [ -d "$DENO_INSTALL" ]; then 
+	export DENO_INSTALL
+  export PATH="$DENO_INSTALL/bin:$PATH"
+fi
 
 npm_execpath="$(which pnpm)"
 if [[ $npm_execpath ]]; then
