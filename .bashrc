@@ -122,12 +122,14 @@ export NVS_HOME="$HOME/.nvs"
 # Required for keybase GPG implementation
 export GPG_TTY=$(tty)
 
+# Using Deno?
 DENO_INSTALL="$HOME/.local"
 if [ -d "$DENO_INSTALL" ]; then 
 	export DENO_INSTALL
   export PATH="$DENO_INSTALL/bin:$PATH"
 fi
 
+# Using Node?
 npm_execpath="$(which pnpm)"
 if [[ $npm_execpath ]]; then
   alias pm="pnpm"
