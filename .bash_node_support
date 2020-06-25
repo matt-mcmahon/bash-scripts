@@ -1,0 +1,35 @@
+# Using Deno?
+DENO_INSTALL="$HOME/.local"
+if [ -d "$DENO_INSTALL" ]; then 
+	export DENO_INSTALL
+  export PATH="$DENO_INSTALL/bin:$PATH"
+fi
+
+# Using Node Version __Switcher__
+NVS_DIR="$HOME/.nvs"
+if [ -d "$NVS_DIR" ]; then
+	export NVS_DIR
+	[ -s "$NVS_DIR/nvs.sh" ] && . "$NVS_DIR/nvs.sh"
+fi
+
+# Using Node Version __Manager__
+NVM_DIR="$HOME/.nvm"
+if [ -d "$NVM_DIR" ]; then
+	export NVM_DIR
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                    # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+# Which Package Manager?
+npm_execpath="$(which pnpm)"
+if [[ $npm_execpath ]]; then
+	echo "Using PNPM"
+  alias pm="pnpm"
+  alias px="pnpx"
+else 
+	echo "Using NPM"
+  npm_execpath=$(which npm)
+	alias pm="npm"
+	alias px="npx"
+fi
+export npm_execpath

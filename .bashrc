@@ -90,14 +90,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -116,48 +108,26 @@ fi
 export EDITOR="vim"
 export VISUAL="vim"
 
-export NVS_HOME="$HOME/.nvs"
-[ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
 
 # Required for keybase GPG implementation
 export GPG_TTY=$(tty)
 
-# Using Deno?
-DENO_INSTALL="$HOME/.local"
-if [ -d "$DENO_INSTALL" ]; then 
-	export DENO_INSTALL
-  export PATH="$DENO_INSTALL/bin:$PATH"
-fi
-
-# Using Node?
-npm_execpath="$(which pnpm)"
-if [[ $npm_execpath ]]; then
-  alias pm="pnpm"
-  alias px="pnpx"
-else 
-  npm_execpath=$(which npm)
-	alias pm="npm"
-	alias px="npx"
-fi
-export npm_execpath
-
-# Using Node Version Switcher
-NVS_DIR="$HOME/.nvs"
-if [ -d "$NVS_DIR" ]; then
-	export NVS_DIR
-	[ -s "$NVS_DIR/nvs.sh" ] && . "$NVS_DIR/nvs.sh"
-fi
-
-# Using Node Version Manager
-NVM_DIR="$HOME/.nvm"
-if [ -d "$NVM_DIR" ]; then
-	export NVM_DIR
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                    # This loads nvm
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
-
 # Using bash-scripts/bin
 BASH_SCRIPTS_BIN="$HOME/bash-scripts/bin/"
-if [ -d "BASH_SCRIPTS_BIN" ]; then
-	PATH="$HOME/bash-scripts/bin/:${PATH}"; export PATH
+if [ -d "$BASH_SCRIPTS_BIN" ]; then
+	PATH="$BASH_SCRIPTS_BIN:${PATH}"; export PATH
 fi
+
+# Node Support
+if [ -f ~/bash-scripts/.bash_node_support ]; then
+	. ~/bash-scripts/.bash_node_support;
+fi
+
