@@ -1,5 +1,6 @@
 #!/bin/bash
 
+chown -R $(whoami) ~/.ssh
 chmod 700 ~/.ssh
 chmod 644 ~/.ssh/authorized_keys
 chmod 644 ~/.ssh/known_hosts
@@ -10,3 +11,8 @@ chmod 600 ~/.ssh/github_rsa
 chmod 644 ~/.ssh/github_rsa.pub
 chmod 600 ~/.ssh/mozilla_rsa
 chmod 644 ~/.ssh/mozilla_rsa.pub
+
+# GPG Permissions
+chown -R $(whoami) ~/.gnupg/
+find ~/.gnupg -type f -exec chmod 600 {} \;
+find ~/.gnupg -type d -exec chmod 700 {} \;
