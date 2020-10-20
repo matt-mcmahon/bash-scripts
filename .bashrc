@@ -95,13 +95,13 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		. /usr/share/bash-completion/bash_completion
+	if [ -f /usr/share/bash-completion/bash_completion.sh ]; then
+		. /usr/share/bash-completion/bash_completion.sh
 	elif [ -f /etc/bash_completion ]; then
 		. /etc/bash_completion
 	fi
-	if [ -f ~/.bash_completion ]; then
-		. ~/.bash_completion
+	if [ -f $HOME/.bash_completion ]; then
+		. $HOME/.bash_completion
 	fi
 fi
 
