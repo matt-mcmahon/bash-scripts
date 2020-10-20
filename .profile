@@ -41,6 +41,12 @@ if [ -d "/home/linuxbrew" ]; then
 fi
 
 # Node Support
-if [ -f ~/bash-scripts/.bash_node_support ]; then
-	. ~/bash-scripts/.bash_node_support;
+if [ -f "$HOME/bash-scripts/.bash_node_support" ]; then
+	. "$HOME/bash-scripts/.bash_node_support"
+fi
+
+# Rust Support
+RUST="$HOME/.cargo"
+if [ -d "$RUST"]
+    export PATH="$RUST/bin:$PATH"
 fi
