@@ -40,6 +40,9 @@ _deno() {
             install)
                 cmd+="__install"
                 ;;
+            lint)
+                cmd+="__lint"
+                ;;
             repl)
                 cmd+="__repl"
                 ;;
@@ -62,7 +65,7 @@ _deno() {
 
     case "${cmd}" in
         deno)
-            opts=" -q -h -V -L  --quiet --help --version --log-level   bundle completions eval cache fmt info install repl run test types upgrade doc help"
+            opts=" -q -h -V -L  --unstable --quiet --help --version --log-level   bundle cache completions doc eval fmt info install lint repl run test types upgrade help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -86,17 +89,13 @@ _deno() {
             ;;
         
         deno__bundle)
-            opts=" -h -V -q -c -L  --unstable --help --version --quiet --cert --importmap --config --log-level  <source_file> <out_file> "
+            opts=" -h -V -q -c -r -L  --no-remote --lock-write --help --version --unstable --quiet --importmap --config --reload --lock --cert --log-level  <source_file> <out_file> "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 
-                --cert)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
                 --importmap)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -106,6 +105,22 @@ _deno() {
                     return 0
                     ;;
                     -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --reload)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --lock)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cert)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -125,25 +140,13 @@ _deno() {
             return 0
             ;;
         deno__cache)
-            opts=" -h -V -q -r -c -L  --lock-write --unstable --no-remote --help --version --quiet --reload --lock --importmap --config --cert --log-level  <file>... "
+            opts=" -h -V -q -c -r -L  --no-remote --no-check --lock-write --help --version --unstable --quiet --importmap --config --reload --lock --cert --log-level  <file>... "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 
-                --reload)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                    -r)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --lock)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
                 --importmap)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -153,6 +156,18 @@ _deno() {
                     return 0
                     ;;
                     -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --reload)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --lock)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -176,7 +191,7 @@ _deno() {
             return 0
             ;;
         deno__completions)
-            opts=" -h -V -q -L  --help --version --quiet --log-level  <shell> "
+            opts=" -h -V -q -L  --help --version --unstable --quiet --log-level  <shell> "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -199,7 +214,7 @@ _deno() {
             return 0
             ;;
         deno__doc)
-            opts=" -h -V -q -r -L  --unstable --json --help --version --quiet --reload --log-level  <source_file> <filter> "
+            opts=" -h -V -q -r -L  --json --private --help --version --unstable --quiet --reload --log-level  <source_file> <filter> "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -230,13 +245,41 @@ _deno() {
             return 0
             ;;
         deno__eval)
-            opts=" -T -h -V -q -L  --unstable --ts --help --version --quiet --inspect --inspect-brk --cert --v8-flags --log-level  <code> "
+            opts=" -T -p -h -V -q -c -r -L  --no-remote --no-check --lock-write --cached-only --ts --print --help --version --unstable --quiet --importmap --config --reload --lock --cert --inspect --inspect-brk --v8-flags --seed --log-level  <code> "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 
+                --importmap)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --reload)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --lock)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cert)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --inspect)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -245,11 +288,11 @@ _deno() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
-                --cert)
+                --v8-flags)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
-                --v8-flags)
+                --seed)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -269,13 +312,17 @@ _deno() {
             return 0
             ;;
         deno__fmt)
-            opts=" -h -V -q -L  --check --help --version --quiet --log-level  <files>... "
+            opts=" -h -V -q -L  --check --help --version --unstable --quiet --ignore --log-level  <files>... "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 
+                --ignore)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --log-level)
                     COMPREPLY=($(compgen -W "debug info" -- "${cur}"))
                     return 0
@@ -292,7 +339,7 @@ _deno() {
             return 0
             ;;
         deno__help)
-            opts=" -h -V -q -L  --help --version --quiet --log-level  "
+            opts=" -h -V -q -L  --help --version --unstable --quiet --log-level  "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -315,14 +362,26 @@ _deno() {
             return 0
             ;;
         deno__info)
-            opts=" -h -V -q -L  --unstable --help --version --quiet --cert --log-level  <file> "
+            opts=" -h -V -q -r -L  --no-check --json --help --version --unstable --quiet --reload --cert --importmap --log-level  <file> "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 
+                --reload)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --cert)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --importmap)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -342,7 +401,7 @@ _deno() {
             return 0
             ;;
         deno__install)
-            opts=" -A -f -h -V -q -n -L  --allow-env --allow-run --allow-plugin --allow-hrtime --allow-all --force --unstable --help --version --quiet --allow-read --allow-write --allow-net --name --root --cert --log-level  <cmd>... "
+            opts=" -A -f -h -V -q -n -r -c -L  --allow-env --allow-run --allow-plugin --allow-hrtime --allow-all --force --no-check --help --version --unstable --quiet --allow-read --allow-write --allow-net --name --root --reload --cert --config --log-level  <cmd>... "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -373,7 +432,50 @@ _deno() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --reload)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --cert)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --log-level)
+                    COMPREPLY=($(compgen -W "debug info" -- "${cur}"))
+                    return 0
+                    ;;
+                    -L)
+                    COMPREPLY=($(compgen -W "debug info" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        deno__lint)
+            opts=" -h -V -q -L  --rules --json --help --version --unstable --quiet --ignore --log-level  <files>... "
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                
+                --ignore)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -393,13 +495,41 @@ _deno() {
             return 0
             ;;
         deno__repl)
-            opts=" -h -V -q -L  --unstable --help --version --quiet --inspect --inspect-brk --v8-flags --cert --log-level  "
+            opts=" -h -V -q -c -r -L  --no-remote --no-check --lock-write --cached-only --help --version --unstable --quiet --importmap --config --reload --lock --cert --inspect --inspect-brk --v8-flags --seed --log-level  "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 
+                --importmap)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --reload)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --lock)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cert)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --inspect)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -412,7 +542,7 @@ _deno() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
-                --cert)
+                --seed)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -432,13 +562,41 @@ _deno() {
             return 0
             ;;
         deno__run)
-            opts=" -A -h -V -q -r -c -L  --allow-env --allow-run --allow-plugin --allow-hrtime --allow-all --unstable --lock-write --no-remote --cached-only --help --version --quiet --inspect --inspect-brk --allow-read --allow-write --allow-net --importmap --reload --config --lock --v8-flags --cert --seed --log-level  <SCRIPT_ARG>... "
+            opts=" -A -h -V -q -c -r -L  --no-remote --no-check --lock-write --allow-env --allow-run --allow-plugin --allow-hrtime --allow-all --cached-only --watch --help --version --unstable --quiet --importmap --config --reload --lock --cert --inspect --inspect-brk --allow-read --allow-write --allow-net --v8-flags --seed --log-level  <SCRIPT_ARG>... "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 
+                --importmap)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --reload)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --lock)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cert)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --inspect)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -459,35 +617,7 @@ _deno() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
-                --importmap)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --reload)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                    -r)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --config)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                    -c)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --lock)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
                 --v8-flags)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --cert)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -511,13 +641,41 @@ _deno() {
             return 0
             ;;
         deno__test)
-            opts=" -A -h -V -q -r -c -L  --allow-env --allow-run --allow-plugin --allow-hrtime --allow-all --unstable --lock-write --no-remote --cached-only --failfast --allow-none --help --version --quiet --inspect --inspect-brk --allow-read --allow-write --allow-net --importmap --reload --config --lock --v8-flags --cert --seed --filter --log-level  <files>... "
+            opts=" -A -h -V -q -c -r -L  --no-remote --no-check --lock-write --allow-env --allow-run --allow-plugin --allow-hrtime --allow-all --cached-only --failfast --allow-none --coverage --help --version --unstable --quiet --importmap --config --reload --lock --cert --inspect --inspect-brk --allow-read --allow-write --allow-net --v8-flags --seed --filter --log-level  <files>... "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 
+                --importmap)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --reload)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                    -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --lock)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cert)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --inspect)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -538,35 +696,7 @@ _deno() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
-                --importmap)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --reload)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                    -r)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --config)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                    -c)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --lock)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
                 --v8-flags)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --cert)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -594,7 +724,7 @@ _deno() {
             return 0
             ;;
         deno__types)
-            opts=" -h -V -q -L  --unstable --help --version --quiet --log-level  "
+            opts=" -h -V -q -L  --help --version --unstable --quiet --log-level  "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -617,7 +747,7 @@ _deno() {
             return 0
             ;;
         deno__upgrade)
-            opts=" -f -h -q -L  --dry-run --force --help --quiet --version --log-level  "
+            opts=" -f -h -q -L  --dry-run --force --help --unstable --quiet --version --output --cert --log-level  "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -625,6 +755,14 @@ _deno() {
             case "${prev}" in
                 
                 --version)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --output)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cert)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
