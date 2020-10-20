@@ -1,3 +1,5 @@
-for bcfile in ~/.bash_completion.d/* ; do
+#!/bin/bash
+
+for bcfile in "$HOME/.bash_completion.d/*" ; do
   [ -f "$bcfile" ] && . $bcfile
 done
