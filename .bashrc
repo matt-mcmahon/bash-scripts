@@ -116,18 +116,3 @@ export VISUAL="vim"
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
-
-# Required for keybase GPG implementation
-export GPG_TTY=$(tty)
-
-# Using bash-scripts/bin
-BASH_SCRIPTS_BIN="$HOME/bash-scripts/bin/"
-if [ -d "$BASH_SCRIPTS_BIN" ]; then
-	PATH="$BASH_SCRIPTS_BIN:${PATH}"; export PATH
-fi
-
-# Node Support
-if [ -f ~/bash-scripts/.bash_node_support ]; then
-	. ~/bash-scripts/.bash_node_support;
-fi
-

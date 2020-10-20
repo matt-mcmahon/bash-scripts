@@ -16,6 +16,15 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+# Required for keybase GPG implementation
+export GPG_TTY=$(tty)
+
+# Using bash-scripts/bin
+BASH_SCRIPTS_BIN="$HOME/bash-scripts/bin/"
+if [ -d "$BASH_SCRIPTS_BIN" ]; then
+	PATH="$BASH_SCRIPTS_BIN:$PATH"; export PATH
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -24,4 +33,14 @@ fi
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Homebrew for Linux
+if [ -d "/home/linuxbrew" ]; then
+    PATH="/home/linuxbrew/.linuxbrew/bin/brew:$PATH"
+fi
+
+# Node Support
+if [ -f ~/bash-scripts/.bash_node_support ]; then
+	. ~/bash-scripts/.bash_node_support;
 fi
