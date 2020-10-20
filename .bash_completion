@@ -3,3 +3,7 @@
 for bcfile in "$HOME/.bash_completion.d/*" ; do
   [ -f "$bcfile" ] && . $bcfile
 done
+
+for bcfile in "/home/linuxbrew/.linuxbrew/etc/bash_completion.d/*" ; do
+  [ -f "$bcfile" ] && . $bcfile
+done
