@@ -37,7 +37,7 @@ fi
 
 # Homebrew for Linux
 if [ -d "/home/linuxbrew" ]; then
-    PATH="/home/linuxbrew/.linuxbrew/bin/brew:$PATH"
+    PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 fi
 
 # Node Support
