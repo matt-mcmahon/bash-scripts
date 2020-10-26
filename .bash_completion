@@ -1,9 +1,11 @@
 #!/bin/bash
 
-for bcfile in "$HOME/.bash_completion.d/*" ; do
-  [ -f "$bcfile" ] && . $bcfile
+FILES=$HOME/.bash_completion.d/*
+for FILE in $FILES ; do
+  [ -f "$FILE" ] && . $FILE
 done
 
-for bcfile in "/home/linuxbrew/.linuxbrew/etc/bash_completion.d/*" ; do
-  [ -f "$bcfile" ] && . $bcfile
+FILES=/home/linuxbrew/.linuxbrew/etc/bash_completion.d/*
+for FILE in $FILES ; do
+  [ -f "$FILE" ] && . $FILE
 done
