@@ -58,7 +58,7 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-PROMPT_COMMAND=my-prompt 
+PROMPT_COMMAND=my-prompt
 
 # unset color_prompt force_color_prompt
 
