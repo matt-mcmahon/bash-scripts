@@ -1,10 +1,9 @@
 #!/bin/bash
 
 # Using Deno?
-DENO_INSTALL="$HOME/.local"
-if [ -f "$DENO_INSTALL/.local/bin/deno" ]; then 
-  export DENO_INSTALL
-  export PATH="$DENO_INSTALL/bin:$PATH"
+DENO_BIN="$HOME/.local/bin/"
+if [ -f "$DENO_BIN/deno" ]; then
+  export PATH="$DENO_BIN:$HOME/.deno/bin:$PATH"
 fi
 
 # Using Node Version __Switcher__
@@ -34,7 +33,7 @@ npm_execpath="$(which pnpm)"
 if [[ $npm_execpath ]]; then
   alias pm="pnpm"
   alias px="pnpx"
-else 
+else
   npm_execpath=$(which npm)
   alias pm="npm"
   alias px="npx"
