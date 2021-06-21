@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Using Deno?
-DENO_BIN="$HOME/.local/bin/"
+# Using Deno?z
+DENO_BIN="$HOME/.deno/bin"
 if [ -f "$DENO_BIN/deno" ]; then
-  export PATH="$DENO_BIN:$HOME/.deno/bin:$PATH"
+  export PATH="$DENO_BIN:$PATH"
 fi
 
 # Using Node Version __Switcher__
