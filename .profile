@@ -50,3 +50,6 @@ RUST="$HOME/.cargo"
 if [ -d "$RUST" ]; then
     export PATH="$RUST/bin:$PATH"
 fi
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+. "$HOME/.cargo/env"
