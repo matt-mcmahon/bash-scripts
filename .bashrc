@@ -116,3 +116,8 @@ export VISUAL="vim"
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+[ -f "/home/matt/.ghcup/env" ] && source "/home/matt/.ghcup/env" # ghcup-env
+. "$HOME/.cargo/env"

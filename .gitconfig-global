@@ -1,0 +1,7 @@
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
+[alias]
+	loc = ! git ls-files | xargs wc -l
+	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit main..

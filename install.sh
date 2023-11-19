@@ -1,13 +1,20 @@
 #!/bin/bash
 
-rm -rdi ~/.bashrc             \
-        ~/.bash_aliases       \
-        ~/.bash_completion    \
-        ~/.bash_completion.d  \
-        ~/.profile         
+mkdir -p ~/profile-backup
 
-ln -rs ./.bash_aliases        ~/.bash_aliases
-ln -rs ./.bashrc              ~/.bashrc
-ln -rs ./.bash_completion     ~/.bash_completion
-ln -rs ./.profile             ~/.profile
-ln -rs ./.bash_completion.d   ~/.bash_completion.d
+cp -u   ~/.bash_aliases        ~/profile-backup 2> /dev/null
+cp -u   ~/.bash_completion     ~/profile-backup 2> /dev/null
+cp -ur  ~/.bash_completion.d   ~/profile-backup 2> /dev/null
+cp -u   ~/.bashrc              ~/profile-backup 2> /dev/null
+cp -u   ~/.profile             ~/profile-backup 2> /dev/null
+
+ln -frs ./.bash_aliases        ~/.bash_aliases
+ln -frs ./.bash_completion     ~/.bash_completion
+ln -frs ./.bash_completion.d   ~/.bash_completion.d
+ln -frs ./.bashrc              ~/.bashrc
+ln -frs ./.profile             ~/.profile
+
+cp -u   ~/.gitconfig           ~/profile-backup 2> /dev/null
+
+echo "[include]
+    path = $PWD/.gitconfig-global" >> ~/.gitconfig
