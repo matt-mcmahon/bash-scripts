@@ -28,6 +28,14 @@ if [ -d "$VOLTA_HOME" ]; then
     PATH="$VOLTA_HOME/bin:$PATH"
 fi
 
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
 # Which Package Manager?
 npm_execpath="$(which pnpm)"
 if [[ $npm_execpath ]]; then

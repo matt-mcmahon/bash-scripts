@@ -2,7 +2,7 @@
 
 if [ -z ${GPG_TTY+x} ]; then
     echo '# Required for keybase GPG implementation'
-    echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
+    echo 'export GPG_TTY=$(tty)' >> $HOME/.bashrc
     GPG_TTY=$(tty)
 else
     echo "GPG_TTY is $GPG_TTY"

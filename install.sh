@@ -1,20 +1,20 @@
 #!/bin/bash
 
-mkdir -p ~/profile-backup
+mkdir -p $HOME/profile-backup
 
-cp -u   ~/.bash_aliases        ~/profile-backup 2> /dev/null
-cp -u   ~/.bash_completion     ~/profile-backup 2> /dev/null
-cp -ur  ~/.bash_completion.d   ~/profile-backup 2> /dev/null
-cp -u   ~/.bashrc              ~/profile-backup 2> /dev/null
-cp -u   ~/.profile             ~/profile-backup 2> /dev/null
+cp -u   $HOME/.bash_aliases        $HOME/profile-backup 2> /dev/null
+cp -u   $HOME/.bash_completion     $HOME/profile-backup 2> /dev/null
+cp -ur  $HOME/.bash_completion.d   $HOME/profile-backup 2> /dev/null
+cp -u   $HOME/.bashrc              $HOME/profile-backup 2> /dev/null
+cp -u   $HOME/.profile             $HOME/profile-backup 2> /dev/null
 
-ln -frs ./.bash_aliases        ~/.bash_aliases
-ln -frs ./.bash_completion     ~/.bash_completion
-ln -frs ./.bash_completion.d   ~/.bash_completion.d
-ln -frs ./.bashrc              ~/.bashrc
-ln -frs ./.profile             ~/.profile
+ln -frs ./.bash_aliases        $HOME/.bash_aliases
+ln -frs ./.bash_completion     $HOME/.bash_completion
+ln -frs ./.bash_completion.d   $HOME/.bash_completion.d
+ln -frs ./.bashrc              $HOME/.bashrc
+ln -frs ./.profile             $HOME/.profile
 
-cp -u   ~/.gitconfig           ~/profile-backup 2> /dev/null
+cp -u   $HOME/.gitconfig           $HOME/profile-backup 2> /dev/null
 
 echo "[include]
-    path = $PWD/.gitconfig-global" >> ~/.gitconfig
+    path = $PWD/.gitconfig-global" >> $HOME/.gitconfig

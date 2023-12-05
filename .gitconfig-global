@@ -1,7 +1,8 @@
-[commit]
-	gpgsign = true
 [init]
 	defaultBranch = main
 [alias]
 	loc = ! git ls-files | xargs wc -l
-	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit main..
+	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit
+	recent = branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\"
+	list = tag --sort v:refname
+	list- = tag --sort -v:refname

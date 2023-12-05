@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/bash-scripts/posh-git.sh
+source $HOME/bash-scripts/posh-git.sh
 
 function my-prompt {
 	if [ "$color_prompt" = yes ]; then

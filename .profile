@@ -1,5 +1,5 @@
-# ~/.profile: executed by the command interpreter for login shells.
-# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# $HOME/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if $HOME/.bash_profile or $HOME/.bash_login
 # exists.
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
@@ -50,6 +50,3 @@ RUST="$HOME/.cargo"
 if [ -d "$RUST" ]; then
     export PATH="$RUST/bin:$PATH"
 fi
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-. "$HOME/.cargo/env"
